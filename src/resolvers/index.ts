@@ -1,3 +1,4 @@
+import { groupsResolver } from "./groups";
 import { usersResolver } from "./users";
 
 // Resolvers define the technique for fetching the types defined in the
@@ -5,5 +6,6 @@ import { usersResolver } from "./users";
 export const resolvers = {
   Query: {
     users: usersResolver,
+    groups: groupsResolver,
   },
 };

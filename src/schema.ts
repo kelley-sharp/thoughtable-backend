@@ -8,14 +8,24 @@ export const typeDefs = gql`
 
   type User {
     id: ID!
+    createdAt: String
+    email: String
     firstName: String
     lastName: String
-    age: Int
+    password: String
+  }
+
+  type Group {
+    id: ID!
+    adminId: ID!
+    createdAt: String
+    name: String
   }
 
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each.
   type Query {
     users: [User]
+    groups: [Group]
   }
 `;
