@@ -40,4 +40,5 @@ export const seedData = async () => {
   group.name = "Cromwell House";
   group.adminId = 1;
   group.createdAt = "Tuesday";
+  group.save();
 };

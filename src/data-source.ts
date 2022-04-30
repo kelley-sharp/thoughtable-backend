@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
+import { Group } from "./entity/Group";
 import { User } from "./entity/User";
 
 export const AppDataSource = new DataSource({
@@ -10,8 +11,9 @@ export const AppDataSource = new DataSource({
   password: "test",
   database: "thoughtable",
   synchronize: true,
+  dropSchema: true,
   logging: true,
-  entities: [User],
+  entities: [User, Group],
   migrations: [],
   subscribers: [],
 });
