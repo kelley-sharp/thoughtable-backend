@@ -1,3 +1,4 @@
+import { Event } from "./entity/Event";
 import { Group } from "./entity/Group";
 import { User } from "./entity/User";
 
@@ -26,6 +27,32 @@ export const seedData = async () => {
     },
   ];
 
+  const groups = [
+    { id: 1, name: "Cromwell House", adminId: 1, createdAt: "Tuesday" },
+    { id: 2, name: "Acadia", adminId: 3, createdAt: "Wednesday" },
+  ];
+
+  const events = [
+    {
+      id: 10,
+      createdAt: "Monday",
+      ownerId: 1,
+      name: "Birthday",
+      month: 7,
+      day: 18,
+      repeatsAnnually: true,
+    },
+    {
+      id: 11,
+      createdAt: "Monday",
+      ownerId: 2,
+      name: "Workiversary",
+      month: 6,
+      day: 22,
+      repeatsAnnually: true,
+    },
+  ];
+
   for (let user of users) {
     const newUser = new User();
     newUser.firstName = user.firstName;
@@ -36,9 +63,23 @@ export const seedData = async () => {
     await newUser.save();
   }
 
-  const group = new Group();
-  group.name = "Cromwell House";
-  group.adminId = 1;
-  group.createdAt = "Tuesday";
-  group.save();
+  for (let group of groups) {
+    const newGroup = new Group();
+    newGroup.id = group.id;
+    newGroup.name = group.name;
+    newGroup.createdAt = group.createdAt;
+    newGroup.adminId = group.adminId;
+  }
+
+  for (let event of events) {
+    const newEvent = new Event();
+    newEvent.id = event.id;
+    newEvent.name = event.name;
+    newEvent.createdAt = event.createdAt;
+    newEvent.ownerId = event.ownerId;
+    newEvent.month = event.month;
+    newEvent.day = event.day;
+    newEvent.repeatsAnnually = event.repeatsAnnually;
+    newEvent.save();
+  }
 };

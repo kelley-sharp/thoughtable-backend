@@ -2,10 +2,14 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  OneToOne,
+  ManyToMany,
+  OneToMany,
   JoinColumn,
   BaseEntity,
+  JoinTable,
 } from "typeorm";
+import { Group } from "./Group";
+import { Event } from "./Event";
 
 @Entity()
 export class User extends BaseEntity {
@@ -26,4 +30,21 @@ export class User extends BaseEntity {
 
   @Column()
   password: string;
+
+  @OneToMany(() => Event, (event) => event.user)
+  events: Event[];
+
+  @ManyToMany((type) => Group, { nullable: true })
+  @JoinTable({
+    name: "groups_users",
+    joinColumn: {
+      name: "user",
+      referencedColumnName: "id",
+    },
+    inverseJoinColumn: {
+      name: "group",
+      referencedColumnName: "id",
+    },
+  })
+  groups: Group[];
 }

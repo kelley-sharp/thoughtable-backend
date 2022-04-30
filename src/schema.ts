@@ -22,10 +22,21 @@ export const typeDefs = gql`
     name: String
   }
 
+  type Event {
+    id: ID!
+    createdAt: String
+    name: String
+    ownerId: ID!
+    month: Int!
+    day: Int!
+    repeatsAnnually: Boolean
+  }
+
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each.
   type Query {
     users: [User]
     groups: [Group]
+    events: [Event]
   }
 `;
