@@ -7,9 +7,12 @@ import {
   JoinColumn,
   BaseEntity,
   JoinTable,
+  ManyToOne,
 } from "typeorm";
 import { Group } from "./Group";
 import { Event } from "./Event";
+import { BioDetail } from "./BioDetail";
+import { BioDetailToGroup } from "./BioDetailToGroup";
 
 @Entity()
 export class User extends BaseEntity {
@@ -33,6 +36,9 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Event, (event) => event.user, { nullable: true })
   events: Event[];
+
+  @OneToMany(() => BioDetail, (BioDetail) => BioDetail.user)
+  bioDetails: BioDetail[];
 
   @ManyToMany((type) => Group, { nullable: true })
   @JoinTable({

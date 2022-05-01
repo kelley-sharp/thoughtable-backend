@@ -5,8 +5,11 @@ import {
   BaseEntity,
   ManyToMany,
   JoinTable,
+  OneToMany,
 } from "typeorm";
 import { User } from "./User";
+import { BioDetailToGroup } from "./BioDetailToGroup";
+import { BioDetail } from "./BioDetail";
 
 @Entity()
 export class Group extends BaseEntity {
@@ -35,4 +38,10 @@ export class Group extends BaseEntity {
     },
   })
   users: User[];
+
+  @OneToMany(
+    () => BioDetailToGroup,
+    (bioDetailToGroup) => bioDetailToGroup.group
+  )
+  public bioDetailToGroups!: BioDetailToGroup[];
 }

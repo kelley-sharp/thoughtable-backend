@@ -1,8 +1,25 @@
+import { AppDataSource } from "./data-source";
 import { Event } from "./entity/Event";
 import { Group } from "./entity/Group";
 import { User } from "./entity/User";
+import { BioDetail } from "./entity/BioDetail";
+// import { BioDetailToGroup } from "./entity/BioDetailToGroup";
 
 export const seedData = async () => {
+  const bioDetail1 = new BioDetail();
+  bioDetail1.id = 1;
+  bioDetail1.owner_id = 1;
+  bioDetail1.type = "background";
+  bioDetail1.text = "I was Born in the Woods";
+  await AppDataSource.manager.save(bioDetail1);
+
+  const bioDetail2 = new BioDetail();
+  bioDetail2.id = 2;
+  bioDetail2.owner_id = 2;
+  bioDetail2.type = "hobby";
+  bioDetail2.text = "sleeping";
+  await AppDataSource.manager.save(bioDetail2);
+
   const users = [
     {
       firstName: "Timber",
@@ -10,6 +27,7 @@ export const seedData = async () => {
       email: "huey@gmail.com",
       password: "123",
       createdAt: "Monday",
+      bioDetails: [bioDetail1],
     },
     {
       firstName: "Whiskey",
@@ -17,6 +35,7 @@ export const seedData = async () => {
       email: "whereisbone@yahoo.com",
       password: "345",
       createdAt: "Monday",
+      bioDetails: [bioDetail2],
     },
     {
       firstName: "Mr.",
@@ -53,6 +72,20 @@ export const seedData = async () => {
     },
   ];
 
+  // const bioDetailsToGroups = [
+  //   { id: 1, groupId: 1, bioDetailId: 1, isVisible: true },
+  //   { id: 2, groupId: 2, bioDetailId: 2, isVisible: true },
+  // ];
+
+  // for (let bioDetailToGroup of bioDetailsToGroups) {
+  //   const newBioDetailToGroup = new BioDetailToGroup();
+  //   newBioDetailToGroup.bioDetailToGroupId = bioDetailToGroup.id;
+  //   newBioDetailToGroup.bioDetailId = bioDetailToGroup.bioDetailId;
+  //   newBioDetailToGroup.groupId = bioDetailToGroup.groupId;
+  //   newBioDetailToGroup.isVisible = bioDetailToGroup.isVisible;
+  //   await AppDataSource.manager.save(newBioDetailToGroup);
+  // }
+
   for (let user of users) {
     const newUser = new User();
     newUser.firstName = user.firstName;
@@ -60,6 +93,7 @@ export const seedData = async () => {
     newUser.email = user.email;
     newUser.password = user.password;
     newUser.createdAt = user.createdAt;
+    newUser.bioDetails ?? user.bioDetails;
     await newUser.save();
   }
 
@@ -69,6 +103,7 @@ export const seedData = async () => {
     newGroup.name = group.name;
     newGroup.createdAt = group.createdAt;
     newGroup.adminId = group.adminId;
+    await newGroup.save();
   }
 
   for (let event of events) {
@@ -80,6 +115,6 @@ export const seedData = async () => {
     newEvent.month = event.month;
     newEvent.day = event.day;
     newEvent.repeatsAnnually = event.repeatsAnnually;
-    newEvent.save();
+    await newEvent.save();
   }
 };
