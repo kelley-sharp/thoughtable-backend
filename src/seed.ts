@@ -46,7 +46,7 @@ export const seedData = async () => {
       id: 11,
       createdAt: "Monday",
       ownerId: 2,
-      name: "Workiversary",
+      name: "Workversary",
       month: 6,
       day: 22,
       repeatsAnnually: true,

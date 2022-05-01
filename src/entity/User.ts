@@ -31,7 +31,7 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
-  @OneToMany(() => Event, (event) => event.user)
+  @OneToMany(() => Event, (event) => event.user, { nullable: true })
   events: Event[];
 
   @ManyToMany((type) => Group, { nullable: true })
