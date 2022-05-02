@@ -17,9 +17,6 @@ export class Group extends BaseEntity {
   id: number;
 
   @Column()
-  adminId: number;
-
-  @Column()
   createdAt: string;
 
   @Column()
@@ -38,6 +35,7 @@ export class Group extends BaseEntity {
     },
   })
   users: User[];
+  //adminID: Users[][0]
 
   @OneToMany(
     () => BioDetailToGroup,

@@ -21,7 +21,6 @@ export const typeDefs = gql`
 
   type Group {
     id: ID!
-    adminId: ID!
     createdAt: String
     name: String
     users: [User]
@@ -39,21 +38,21 @@ export const typeDefs = gql`
 
   type BioDetail {
     id: ID!
-    ownerId: ID!
     type: String
     text: String
+    owner: User
   }
 
   type BioDetailToGroup {
     id: ID!
-    bioDetailId: ID!
-    groupId: ID!
+    bioDetail: BioDetail
+    group: Group
     isVisible: Boolean
   }
 
   type GiftGallery {
     id: ID!
-    eventId: ID!
+    event: Event
     user: User
   }
 

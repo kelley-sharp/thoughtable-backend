@@ -14,12 +14,6 @@ export class BioDetailToGroup extends BaseEntity {
   public bioDetailToGroupId!: number;
 
   @Column()
-  public bioDetailId!: number;
-
-  @Column()
-  public groupId!: number;
-
-  @Column()
   public isVisible!: boolean;
 
   @ManyToOne(() => BioDetail, (bioDetail) => bioDetail.bioDetailToGroups)

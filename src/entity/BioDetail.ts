@@ -18,16 +18,13 @@ export class BioDetail extends BaseEntity {
   id: number;
 
   @Column()
-  ownerId: number;
-
-  @Column()
   type: string;
 
   @Column()
   text: string;
 
-  @ManyToOne(() => User, (user) => user.bioDetails)
-  user: User;
+  @ManyToOne(() => User, (owner) => owner.bioDetails)
+  owner: User;
 
   @OneToMany(
     () => BioDetailToGroup,

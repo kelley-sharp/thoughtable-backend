@@ -38,10 +38,14 @@ export class User extends BaseEntity {
   @OneToMany(() => Event, (event) => event.owner, { nullable: true })
   events: Event[];
 
-  @OneToMany(() => BioDetail, (bioDetail) => bioDetail.user)
+  @OneToMany(() => BioDetail, (bioDetail) => bioDetail.owner, {
+    nullable: true,
+  })
   bioDetails: BioDetail[];
 
-  @OneToMany(() => GiftGallery, (giftGallery) => giftGallery.user)
+  @OneToMany(() => GiftGallery, (giftGallery) => giftGallery.owner, {
+    nullable: true,
+  })
   giftGalleries: GiftGallery[];
 
   @ManyToMany((type) => Group, { nullable: true })

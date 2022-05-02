@@ -15,11 +15,8 @@ export class GiftGallery extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  eventId: string;
-
   @ManyToOne(() => User, (user) => user.giftGalleries)
-  user: User;
+  owner: User;
 
   @ManyToOne(() => Event, (event) => event.giftGalleries)
   event: Event;
