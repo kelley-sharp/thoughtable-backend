@@ -13,6 +13,7 @@ import { Group } from "./Group";
 import { Event } from "./Event";
 import { BioDetail } from "./BioDetail";
 import { BioDetailToGroup } from "./BioDetailToGroup";
+import { GiftGallery } from "./GiftGallery";
 
 @Entity()
 export class User extends BaseEntity {
@@ -34,11 +35,14 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
-  @OneToMany(() => Event, (event) => event.user, { nullable: true })
+  @OneToMany(() => Event, (event) => event.owner, { nullable: true })
   events: Event[];
 
-  @OneToMany(() => BioDetail, (BioDetail) => BioDetail.user)
+  @OneToMany(() => BioDetail, (bioDetail) => bioDetail.user)
   bioDetails: BioDetail[];
+
+  @OneToMany(() => GiftGallery, (giftGallery) => giftGallery.user)
+  giftGalleries: GiftGallery[];
 
   @ManyToMany((type) => Group, { nullable: true })
   @JoinTable({

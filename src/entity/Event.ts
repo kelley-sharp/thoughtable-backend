@@ -4,7 +4,9 @@ import {
   Column,
   ManyToOne,
   BaseEntity,
+  OneToMany,
 } from "typeorm";
+import { GiftGallery } from "./GiftGallery";
 import { User } from "./User";
 
 @Entity()
@@ -14,9 +16,6 @@ export class Event extends BaseEntity {
 
   @Column()
   createdAt: string;
-
-  @Column()
-  ownerId: number;
 
   @Column()
   name: string;
@@ -31,5 +30,8 @@ export class Event extends BaseEntity {
   repeatsAnnually: boolean;
 
   @ManyToOne(() => User, (user) => user.events)
-  user: User;
+  owner: User;
+
+  @OneToMany(() => GiftGallery, (giftGallery) => giftGallery.event)
+  giftGalleries: [GiftGallery];
 }

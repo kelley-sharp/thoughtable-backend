@@ -3,6 +3,7 @@ import { DataSource } from "typeorm";
 import { BioDetail } from "./entity/BioDetail";
 import { BioDetailToGroup } from "./entity/BioDetailToGroup";
 import { Event } from "./entity/Event";
+import { GiftGallery } from "./entity/GiftGallery";
 import { Group } from "./entity/Group";
 import { User } from "./entity/User";
 
@@ -16,7 +17,7 @@ export const AppDataSource = new DataSource({
   synchronize: true,
   dropSchema: true,
   logging: true,
-  entities: [User, Group, Event, BioDetail, BioDetailToGroup],
+  entities: [User, Group, Event, BioDetail, BioDetailToGroup, GiftGallery],
   migrations: [],
   subscribers: [],
 });

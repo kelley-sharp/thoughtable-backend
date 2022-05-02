@@ -18,7 +18,7 @@ export class BioDetail extends BaseEntity {
   id: number;
 
   @Column()
-  owner_id: number;
+  ownerId: number;
 
   @Column()
   type: string;

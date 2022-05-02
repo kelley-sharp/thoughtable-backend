@@ -13,7 +13,10 @@ export const typeDefs = gql`
     firstName: String
     lastName: String
     password: String
-    # Do I need a bioDetails Array here?
+    bioDetails: [BioDetail]
+    events: [Event]
+    groups: [Group]
+    giftGalleries: [GiftGallery]
   }
 
   type Group {
@@ -21,21 +24,22 @@ export const typeDefs = gql`
     adminId: ID!
     createdAt: String
     name: String
+    users: [User]
   }
 
   type Event {
     id: ID!
     createdAt: String
     name: String
-    ownerId: ID!
     month: Int!
     day: Int!
     repeatsAnnually: Boolean
+    owner: User
   }
 
   type BioDetail {
     id: ID!
-    owner_id: ID!
+    ownerId: ID!
     type: String
     text: String
   }
@@ -47,6 +51,12 @@ export const typeDefs = gql`
     isVisible: Boolean
   }
 
+  type GiftGallery {
+    id: ID!
+    eventId: ID!
+    user: User
+  }
+
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each.
   type Query {
@@ -55,5 +65,6 @@ export const typeDefs = gql`
     events: [Event]
     bioDetails: [BioDetail]
     bioDetailToGroup: [BioDetailToGroup]
+    giftGalleries: [GiftGallery]
   }
 `;
