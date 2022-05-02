@@ -3,7 +3,7 @@ import { Event } from "./entity/Event";
 import { Group } from "./entity/Group";
 import { User } from "./entity/User";
 import { BioDetail } from "./entity/BioDetail";
-// import { BioDetailToGroup } from "./entity/BioDetailToGroup";
+import { BioDetailToGroup } from "./entity/BioDetailToGroup";
 
 export const seedData = async () => {
   const bioDetail1 = new BioDetail();
@@ -11,14 +11,14 @@ export const seedData = async () => {
   bioDetail1.owner_id = 1;
   bioDetail1.type = "background";
   bioDetail1.text = "I was Born in the Woods";
-  await AppDataSource.manager.save(bioDetail1);
+  await bioDetail1.save();
 
   const bioDetail2 = new BioDetail();
   bioDetail2.id = 2;
   bioDetail2.owner_id = 2;
   bioDetail2.type = "hobby";
   bioDetail2.text = "sleeping";
-  await AppDataSource.manager.save(bioDetail2);
+  await bioDetail2.save();
 
   const users = [
     {
@@ -47,13 +47,12 @@ export const seedData = async () => {
   ];
 
   const groups = [
-    { id: 1, name: "Cromwell House", adminId: 1, createdAt: "Tuesday" },
-    { id: 2, name: "Acadia", adminId: 3, createdAt: "Wednesday" },
+    { name: "Cromwell House", adminId: 1, createdAt: "Tuesday" },
+    { name: "Acadia", adminId: 3, createdAt: "Wednesday" },
   ];
 
   const events = [
     {
-      id: 10,
       createdAt: "Monday",
       ownerId: 1,
       name: "Birthday",
@@ -62,7 +61,6 @@ export const seedData = async () => {
       repeatsAnnually: true,
     },
     {
-      id: 11,
       createdAt: "Monday",
       ownerId: 2,
       name: "Workversary",
@@ -72,19 +70,18 @@ export const seedData = async () => {
     },
   ];
 
-  // const bioDetailsToGroups = [
-  //   { id: 1, groupId: 1, bioDetailId: 1, isVisible: true },
-  //   { id: 2, groupId: 2, bioDetailId: 2, isVisible: true },
-  // ];
+  const bioDetailsToGroups = [
+    { groupId: 1, bioDetailId: 1, isVisible: true },
+    { groupId: 2, bioDetailId: 2, isVisible: true },
+  ];
 
-  // for (let bioDetailToGroup of bioDetailsToGroups) {
-  //   const newBioDetailToGroup = new BioDetailToGroup();
-  //   newBioDetailToGroup.bioDetailToGroupId = bioDetailToGroup.id;
-  //   newBioDetailToGroup.bioDetailId = bioDetailToGroup.bioDetailId;
-  //   newBioDetailToGroup.groupId = bioDetailToGroup.groupId;
-  //   newBioDetailToGroup.isVisible = bioDetailToGroup.isVisible;
-  //   await AppDataSource.manager.save(newBioDetailToGroup);
-  // }
+  for (let bioDetailToGroup of bioDetailsToGroups) {
+    const newBioDetailToGroup = new BioDetailToGroup();
+    newBioDetailToGroup.bioDetailId = bioDetailToGroup.bioDetailId;
+    newBioDetailToGroup.groupId = bioDetailToGroup.groupId;
+    newBioDetailToGroup.isVisible = bioDetailToGroup.isVisible;
+    await newBioDetailToGroup.save();
+  }
 
   for (let user of users) {
     const newUser = new User();
@@ -99,7 +96,6 @@ export const seedData = async () => {
 
   for (let group of groups) {
     const newGroup = new Group();
-    newGroup.id = group.id;
     newGroup.name = group.name;
     newGroup.createdAt = group.createdAt;
     newGroup.adminId = group.adminId;
@@ -108,7 +104,6 @@ export const seedData = async () => {
 
   for (let event of events) {
     const newEvent = new Event();
-    newEvent.id = event.id;
     newEvent.name = event.name;
     newEvent.createdAt = event.createdAt;
     newEvent.ownerId = event.ownerId;

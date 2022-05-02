@@ -1,9 +1,15 @@
-import { Entity, Column, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  BaseEntity,
+} from "typeorm";
 import { BioDetail } from "./BioDetail";
 import { Group } from "./Group";
 
 @Entity()
-export class BioDetailToGroup {
+export class BioDetailToGroup extends BaseEntity {
   @PrimaryGeneratedColumn()
   public bioDetailToGroupId!: number;
 
