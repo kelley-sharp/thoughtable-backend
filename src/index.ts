@@ -3,8 +3,13 @@ import { AppDataSource } from "./data-source";
 import { resolvers } from "./resolvers";
 import { typeDefs } from "./schema";
 import { seedData } from "./seed";
+import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  plugins: [ApolloServerPluginLandingPageLocalDefault()],
+});
 
 const main = async () => {
   try {
