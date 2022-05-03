@@ -20,8 +20,8 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  createdAt: string;
+  // @Column()
+  // createdAt: string;
 
   @Column()
   email: string;

@@ -16,8 +16,8 @@ export class Group extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  createdAt: string;
+  // @Column()
+  // createdAt: string;
 
   @Column()
   name: string;

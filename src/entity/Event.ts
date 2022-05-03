@@ -14,8 +14,8 @@ export class Event extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  createdAt: string;
+  // @Column()
+  // createdAt: string;
 
   @Column()
   name: string;

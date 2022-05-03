@@ -8,7 +8,7 @@ export const typeDefs = gql`
 
   type User {
     id: ID!
-    createdAt: String
+    # createdAt: String
     email: String
     firstName: String
     lastName: String
@@ -21,14 +21,14 @@ export const typeDefs = gql`
 
   type Group {
     id: ID!
-    createdAt: String
+    # createdAt: String
     name: String
     users: [User]
   }
 
   type Event {
     id: ID!
-    createdAt: String
+    # createdAt: String
     name: String
     month: Int!
     day: Int!
@@ -63,7 +63,7 @@ export const typeDefs = gql`
     groups: [Group]
     events: [Event]
     bioDetails: [BioDetail]
-    bioDetailToGroup: [BioDetailToGroup]
+    bioDetailsToGroups: [BioDetailToGroup]
     giftGalleries: [GiftGallery]
   }
 `;
