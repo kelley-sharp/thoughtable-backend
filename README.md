@@ -3,7 +3,7 @@
 Thoughtable is an app for creating and
 delivering collaborative virtual gift packages.
 
-Users will register with their birthdate and/or anniversaries/other
+Users will register with their birth date and/or anniversaries/other
 events along with certain bio details (background, hobbies, likes, and dislikes). They will
 then join groups where this information becomes available to other group
 members.
@@ -41,6 +41,7 @@ The working queries are the following.
   }
 }
 ```
+
 There is a placeholder for the user's password in the "password" field, but that will be hashed and inaccessible of course in production.
 
 ### Groups
@@ -53,6 +54,7 @@ There is a placeholder for the user's password in the "password" field, but that
   }
 }
 ```
+
 ### BioDetails
 
 ```
@@ -98,5 +100,3 @@ Not implemented yet
 ## Database Model
 
 ![thoughtable_db](https://user-images.githubusercontent.com/28247931/166184063-d9a6cdb1-5e69-42cc-bb5b-ad8dbac6b830.png)
-
-
