@@ -9,6 +9,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   plugins: [ApolloServerPluginLandingPageLocalDefault()],
+  introspection: true,
 });
 
 const main = async () => {
