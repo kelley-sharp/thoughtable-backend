@@ -6,6 +6,7 @@ import {
   ManyToMany,
   JoinTable,
   OneToMany,
+  CreateDateColumn,
 } from "typeorm";
 import { User } from "./User";
 import { BioDetailToGroup } from "./BioDetailToGroup";
@@ -16,8 +17,8 @@ export class Group extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // @Column()
-  // createdAt: string;
+  @CreateDateColumn()
+  createdDate: Date;
 
   @Column()
   name: string;
@@ -35,7 +36,7 @@ export class Group extends BaseEntity {
     },
   })
   users: User[];
-  //adminID: Users[][0]
+  //adminID: Users[][0]?
 
   @OneToMany(
     () => BioDetailToGroup,

@@ -1,14 +1,19 @@
+import { GraphQLScalarType } from "graphql";
+
 const { ApolloServer, gql } = require("apollo-server");
 
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
 // your data.
+
 export const typeDefs = gql`
   # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
 
+  scalar Date
+
   type User {
     id: ID!
-    # createdAt: String
+    createdDate: Date
     email: String
     firstName: String
     lastName: String
@@ -28,7 +33,7 @@ export const typeDefs = gql`
 
   type Event {
     id: ID!
-    # createdAt: String
+    # createdDate:
     name: String
     month: Int!
     day: Int!
@@ -52,6 +57,7 @@ export const typeDefs = gql`
 
   type GiftGallery {
     id: ID!
+    #createdDate
     event: Event
     user: User
   }

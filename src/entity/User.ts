@@ -8,6 +8,7 @@ import {
   BaseEntity,
   JoinTable,
   ManyToOne,
+  CreateDateColumn,
 } from "typeorm";
 import { Group } from "./Group";
 import { Event } from "./Event";
@@ -20,8 +21,8 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // @Column()
-  // createdAt: string;
+  @CreateDateColumn()
+  createdDate: Date;
 
   @Column()
   email: string;

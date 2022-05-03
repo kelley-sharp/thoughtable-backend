@@ -6,6 +6,7 @@ import {
   ManyToMany,
   JoinTable,
   ManyToOne,
+  CreateDateColumn,
 } from "typeorm";
 import { User } from "./User";
 import { Event } from "./Event";
@@ -14,6 +15,9 @@ import { Event } from "./Event";
 export class GiftGallery extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @CreateDateColumn()
+  createdDate: Date;
 
   @ManyToOne(() => User, (user) => user.giftGalleries)
   owner: User;

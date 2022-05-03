@@ -5,6 +5,7 @@ import {
   ManyToOne,
   BaseEntity,
   OneToMany,
+  CreateDateColumn,
 } from "typeorm";
 import { GiftGallery } from "./GiftGallery";
 import { User } from "./User";
@@ -14,8 +15,8 @@ export class Event extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // @Column()
-  // createdAt: string;
+  @CreateDateColumn()
+  createdDate: Date;
 
   @Column()
   name: string;
