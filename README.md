@@ -4,7 +4,7 @@ Thoughtable is an app for creating and
 delivering collaborative virtual gift packages.
 
 Users will register with their birthdate and/or anniversaries/other
-events along with certain bio details (background, hobbies, likes, and dislikes).They will
+events along with certain bio details (background, hobbies, likes, and dislikes). They will
 then join groups where this information becomes available to other group
 members.
 
@@ -18,11 +18,17 @@ virtual care package (aka Gift Gallery) and delight.
 
 ## Instructions
 
-Play with the deployed backend here: https://thoughtable-backend.onrender.com - Click the "Query your Server" button.
+Play with the deployed backend here: https://thoughtable-backend.onrender.com
 
-The migrations are unfinished (that's Create Update and Delete functionality), but Read queries have been implemented.
+<img width="1437" alt="Screen Shot 2022-05-03 at 1 10 13 AM" src="https://user-images.githubusercontent.com/28247931/166407176-c7591eba-1531-447f-8eb4-e351365611b6.png"> (this is the sandbox you should see after clicking the "Query your Server" button)
 
-Try quering for information on all users with this GraphQL query:
+The migrations are unfinished (Create Update and Delete functionality), but many Read queries have been implemented.
+
+Since I have not written resolvers for more than just Reading the main entities, any fields that are in place because of a relationship can not be queried yet.
+
+The working queries are the following.
+
+### Users
 
 ```
 {
@@ -37,11 +43,49 @@ Try quering for information on all users with this GraphQL query:
 ```
 There is a placeholder for the user's password in the "password" field, but that will be hashed and inaccessible of course in production.
 
-Now try quering for all the BioDetails on the user with an id of 1:
+### Groups
 
 ```
+{
+  groups {
+    id
+    name
+  }
+}
+```
+### BioDetails
 
 ```
+{
+  bioDetails {
+    id
+    type
+    text
+  }
+}
+```
+
+### Events
+
+```
+{
+  events {
+    id
+    name
+    month
+    day
+    repeatsAnnually
+  }
+}
+```
+
+### GiftGalleries
+
+Not implemented yet
+
+### Gifts
+
+Not implemented yet
 
 ## Steps to run this project locally:
 
