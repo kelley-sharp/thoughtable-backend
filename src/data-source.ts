@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { DataSource, DataSourceOptions } from "typeorm";
+import { DataSource } from "typeorm";
 import { BioDetail } from "./entity/BioDetail";
 import { BioDetailToGroup } from "./entity/BioDetailToGroup";
 import { Event } from "./entity/Event";
