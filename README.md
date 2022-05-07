@@ -20,7 +20,8 @@ virtual care package (aka Gift Gallery) and delight.
 
 Play with the deployed backend here: https://thoughtable-backend.onrender.com
 
-<img width="1437" alt="Screen Shot 2022-05-03 at 1 10 13 AM" src="https://user-images.githubusercontent.com/28247931/166407176-c7591eba-1531-447f-8eb4-e351365611b6.png"> (this is the sandbox you should see after clicking the "Query your Server" button)
+<img width="1000" alt="Screen Shot 2022-05-03 at 1 10 13 AM" src="https://user-images.githubusercontent.com/28247931/166407176-c7591eba-1531-447f-8eb4-e351365611b6.png"> 
+(this is the sandbox you should see after clicking the "Query your Server" button)
 
 The migrations are unfinished (Create Update and Delete functionality), but many Read queries have been implemented.
 
@@ -99,4 +100,4 @@ Not implemented yet
 
 ## Database Model
 
-![thoughtable_db](https://user-images.githubusercontent.com/28247931/166184063-d9a6cdb1-5e69-42cc-bb5b-ad8dbac6b830.png)
+<img width=1000 src="https://user-images.githubusercontent.com/28247931/166184063-d9a6cdb1-5e69-42cc-bb5b-ad8dbac6b830.png">

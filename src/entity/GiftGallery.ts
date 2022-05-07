@@ -7,9 +7,11 @@ import {
   JoinTable,
   ManyToOne,
   CreateDateColumn,
+  OneToMany,
 } from "typeorm";
 import { User } from "./User";
 import { Event } from "./Event";
+import { Gift } from "./Gift";
 
 @Entity()
 export class GiftGallery extends BaseEntity {
@@ -24,4 +26,7 @@ export class GiftGallery extends BaseEntity {
 
   @ManyToOne(() => Event, (event) => event.giftGalleries)
   event: Event;
+
+  @OneToMany(() => Gift, (gift) => gift.giftGallery)
+  gifts: Gift[];
 }
