@@ -11,6 +11,7 @@ import {
 import { User } from "./User";
 import { BioDetailToGroup } from "./BioDetailToGroup";
 import { BioDetail } from "./BioDetail";
+import { EventToGroup } from "./EventToGroup";
 
 @Entity()
 export class Group extends BaseEntity {
@@ -36,11 +37,14 @@ export class Group extends BaseEntity {
     },
   })
   users: User[];
-  //adminID: Users[][0]?
+  //adminID: Users[][0]
 
   @OneToMany(
     () => BioDetailToGroup,
     (bioDetailToGroup) => bioDetailToGroup.group
   )
   public bioDetailToGroups!: BioDetailToGroup[];
+
+  @OneToMany(() => EventToGroup, (eventToGroup) => eventToGroup.group)
+  public eventToGroups!: EventToGroup[];
 }

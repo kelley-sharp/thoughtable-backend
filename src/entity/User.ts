@@ -15,6 +15,7 @@ import { Event } from "./Event";
 import { BioDetail } from "./BioDetail";
 import { BioDetailToGroup } from "./BioDetailToGroup";
 import { GiftGallery } from "./GiftGallery";
+import { Gift } from "./Gift";
 
 @Entity()
 export class User extends BaseEntity {
@@ -43,6 +44,11 @@ export class User extends BaseEntity {
     nullable: true,
   })
   bioDetails: BioDetail[];
+
+  @OneToMany(() => Gift, (gift) => gift.giver, {
+    nullable: true,
+  })
+  givenGifts: Gift[];
 
   @OneToMany(() => GiftGallery, (giftGallery) => giftGallery.owner, {
     nullable: true,

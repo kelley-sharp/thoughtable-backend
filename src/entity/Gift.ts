@@ -11,6 +11,7 @@ import {
 } from "typeorm";
 import { Event } from "./Event";
 import { GiftGallery } from "./GiftGallery";
+import { User } from "./User";
 
 @Entity()
 export class Gift extends BaseEntity {
@@ -37,4 +38,7 @@ export class Gift extends BaseEntity {
 
   @ManyToOne(() => GiftGallery, (giftGallery) => giftGallery.gifts)
   giftGallery: GiftGallery;
+
+  @ManyToOne(() => User, (user) => user.givenGifts)
+  giver: User;
 }
