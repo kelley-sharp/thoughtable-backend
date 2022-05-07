@@ -28,7 +28,8 @@ export class BioDetail extends BaseEntity {
 
   @OneToMany(
     () => BioDetailToGroup,
-    (bioDetailToGroup) => bioDetailToGroup.bioDetail
+    (bioDetailToGroup) => bioDetailToGroup.bioDetail,
+    { nullable: true }
   )
   public bioDetailToGroups!: BioDetailToGroup[];
 }

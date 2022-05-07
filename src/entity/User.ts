@@ -4,16 +4,13 @@ import {
   Column,
   ManyToMany,
   OneToMany,
-  JoinColumn,
   BaseEntity,
   JoinTable,
-  ManyToOne,
   CreateDateColumn,
 } from "typeorm";
 import { Group } from "./Group";
 import { Event } from "./Event";
 import { BioDetail } from "./BioDetail";
-import { BioDetailToGroup } from "./BioDetailToGroup";
 import { GiftGallery } from "./GiftGallery";
 import { Gift } from "./Gift";
 
@@ -31,7 +28,7 @@ export class User extends BaseEntity {
   @Column()
   firstName: string;
 
-  @Column()
+  @Column({ nullable: true })
   lastName: string;
 
   @Column()

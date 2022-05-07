@@ -4,12 +4,8 @@ import {
   Column,
   ManyToOne,
   BaseEntity,
-  OneToMany,
   CreateDateColumn,
-  ManyToMany,
-  JoinTable,
 } from "typeorm";
-import { Event } from "./Event";
 import { GiftGallery } from "./GiftGallery";
 import { User } from "./User";
 
@@ -24,7 +20,7 @@ export class Gift extends BaseEntity {
   @Column()
   imageUrl: string;
 
-  @Column()
+  @Column({ nullable: true })
   caption: string;
 
   @Column()

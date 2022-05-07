@@ -5,6 +5,8 @@ import { bioDetailsResolver } from "./bioDetails";
 import { bioDetailsToGroupsResolver } from "./bioDetailsToGroups";
 import { giftGalleriesResolver } from "./giftGalleries";
 import { GraphQLScalarType, Kind } from "graphql";
+import { eventsToGroupsResolver } from "./eventsToGroups";
+import { giftsResolver } from "./gifts";
 
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
@@ -35,5 +37,7 @@ export const resolvers = {
     bioDetails: bioDetailsResolver,
     bioDetailsToGroups: bioDetailsToGroupsResolver,
     giftGalleries: giftGalleriesResolver,
+    gifts: giftsResolver,
+    eventsToGroups: eventsToGroupsResolver,
   },
 };

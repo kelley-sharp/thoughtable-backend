@@ -19,6 +19,6 @@ export class EventToGroup extends BaseEntity {
   @ManyToOne(() => Event, (event) => event.eventToGroups)
   public event!: Event;
 
-  @ManyToOne(() => Group, (group) => group.eventToGroups)
+  @ManyToOne(() => Group, (group) => group.eventsToGroup)
   public group!: Group;
 }

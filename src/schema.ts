@@ -13,53 +13,76 @@ export const typeDefs = gql`
 
   type User {
     id: ID!
-    createdDate: Date
-    email: String
-    firstName: String
+    createdDate: Date!
+    email: String!
+    firstName: String!
     lastName: String
-    password: String
-    bioDetails: [BioDetail]
+    password: String!
     events: [Event]
-    groups: [Group]
+    bioDetails: [BioDetail]
     giftGalleries: [GiftGallery]
+    groups: [Group]
   }
 
   type Group {
     id: ID!
-    # createdAt: String
-    name: String
-    users: [User]
+    createdDate: Date!
+    name: String!
+    users: [User!]!
+    bioDetailsToGroup: [BioDetailToGroup]
+    eventsToGroup: [EventToGroup]
   }
 
   type Event {
     id: ID!
-    # createdDate:
-    name: String
+    createdDate: Date!
+    name: String!
     month: Int!
     day: Int!
-    repeatsAnnually: Boolean
-    owner: User
+    repeatsAnnually: Boolean!
+    owner: User!
   }
 
   type BioDetail {
     id: ID!
-    type: String
-    text: String
-    owner: User
+    type: String!
+    text: String!
+    owner: User!
+    bioDetailsToGroups: [BioDetailToGroup] #"public"
   }
 
   type BioDetailToGroup {
-    id: ID!
-    bioDetail: BioDetail
-    group: Group
-    isVisible: Boolean
+    bioDetailToGroupId: ID! #"public"
+    bioDetail: BioDetail! #"public"
+    group: Group! #"public"
+    isVisible: Boolean! #"public"
   }
 
   type GiftGallery {
     id: ID!
-    #createdDate
-    event: Event
-    user: User
+    createdDate: Date!
+    owner: User!
+    event: Event!
+    gifts: [Gift]!
+  }
+
+  type Gift {
+    id: ID!
+    createdDate: Date!
+    imageUrl: String!
+    caption: String
+    isAnonymous: Boolean!
+    archivedDate: Date!
+    deletedDate: Date!
+    giftGallery: GiftGallery!
+    giver: User!
+  }
+
+  type EventToGroup {
+    eventToGroupId: ID! #"Public"
+    isVisible: Boolean! #"Public"
+    event: Event! #"Public"
+    group: Group! #"Public"
   }
 
   # The "Query" type is special: it lists all of the available queries that
@@ -71,5 +94,11 @@ export const typeDefs = gql`
     bioDetails: [BioDetail]
     bioDetailsToGroups: [BioDetailToGroup]
     giftGalleries: [GiftGallery]
+    gifts: [Gift]
+    eventsToGroups: [EventToGroup]
+  }
+
+  type Mutation {
+    addUser(title: String, author: String): User
   }
 `;

@@ -19,6 +19,6 @@ export class BioDetailToGroup extends BaseEntity {
   @ManyToOne(() => BioDetail, (bioDetail) => bioDetail.bioDetailToGroups)
   public bioDetail!: BioDetail;
 
-  @ManyToOne(() => Group, (group) => group.bioDetailToGroups)
+  @ManyToOne(() => Group, (group) => group.bioDetailsToGroup)
   public group!: Group;
 }

@@ -1,10 +1,7 @@
 import {
   Entity,
   PrimaryGeneratedColumn,
-  Column,
   BaseEntity,
-  ManyToMany,
-  JoinTable,
   ManyToOne,
   CreateDateColumn,
   OneToMany,

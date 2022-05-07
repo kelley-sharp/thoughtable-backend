@@ -10,7 +10,6 @@ import {
 } from "typeorm";
 import { User } from "./User";
 import { BioDetailToGroup } from "./BioDetailToGroup";
-import { BioDetail } from "./BioDetail";
 import { EventToGroup } from "./EventToGroup";
 
 @Entity()
@@ -37,14 +36,17 @@ export class Group extends BaseEntity {
     },
   })
   users: User[];
-  //adminID: Users[][0]
+  //adminId: Users[][0]
 
   @OneToMany(
     () => BioDetailToGroup,
-    (bioDetailToGroup) => bioDetailToGroup.group
+    (bioDetailToGroup) => bioDetailToGroup.group,
+    { nullable: true }
   )
-  public bioDetailToGroups!: BioDetailToGroup[];
+  public bioDetailsToGroup: BioDetailToGroup[];
 
-  @OneToMany(() => EventToGroup, (eventToGroup) => eventToGroup.group)
-  public eventToGroups!: EventToGroup[];
+  @OneToMany(() => EventToGroup, (eventToGroups) => eventToGroups.group, {
+    nullable: true,
+  })
+  public eventsToGroup: EventToGroup[];
 }
