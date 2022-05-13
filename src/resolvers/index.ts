@@ -1,5 +1,5 @@
 import { groupsResolver } from "./groups";
-import { usersResolver } from "./users";
+import { addUserMutation, usersResolver } from "./users";
 import { eventsResolver } from "./events";
 import { bioDetailsResolver } from "./bioDetails";
 import { bioDetailsToGroupsResolver } from "./bioDetailsToGroups";
@@ -28,6 +28,8 @@ const dateResolver = new GraphQLScalarType({
   },
 });
 
+// basically a config object for Apollo server
+
 export const resolvers = {
   Date: dateResolver,
   Query: {
@@ -39,5 +41,8 @@ export const resolvers = {
     giftGalleries: giftGalleriesResolver,
     gifts: giftsResolver,
     eventsToGroups: eventsToGroupsResolver,
+  },
+  Mutation: {
+    addUser: addUserMutation,
   },
 };

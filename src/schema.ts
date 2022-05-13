@@ -24,6 +24,13 @@ export const typeDefs = gql`
     groups: [Group]
   }
 
+  input UserInput {
+    firstName: String
+    lastName: String
+    email: String
+    password: String
+  }
+
   type Group {
     id: ID!
     createdDate: Date!
@@ -99,6 +106,6 @@ export const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(title: String, author: String): User
+    addUser(newUser: UserInput!): User!
   }
 `;

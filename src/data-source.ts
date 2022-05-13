@@ -1,3 +1,4 @@
+import { Gift } from "./entity/Gift";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { BioDetail } from "./entity/BioDetail";
@@ -6,6 +7,7 @@ import { Event } from "./entity/Event";
 import { GiftGallery } from "./entity/GiftGallery";
 import { Group } from "./entity/Group";
 import { User } from "./entity/User";
+import { EventToGroup } from "./entity/EventToGroup";
 
 function getDataSource() {
   const entities = [
@@ -15,6 +17,8 @@ function getDataSource() {
     BioDetail,
     BioDetailToGroup,
     GiftGallery,
+    Gift,
+    EventToGroup,
   ];
   if (process.env.NODE_ENV === "production") {
     return new DataSource({
