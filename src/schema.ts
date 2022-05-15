@@ -95,6 +95,7 @@ export const typeDefs = gql`
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each.
   type Query {
+    user(id: ID!): User!
     users: [User]
     groups: [Group]
     events: [Event]
@@ -107,5 +108,7 @@ export const typeDefs = gql`
 
   type Mutation {
     addUser(newUser: UserInput!): User!
+    updateUser(id: ID!, userUpdateInput: UserInput!): User!
+    removeUser(id: ID!): Boolean
   }
 `;

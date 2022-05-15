@@ -1,5 +1,11 @@
 import { groupsResolver } from "./groups";
-import { addUserMutation, usersResolver } from "./users";
+import {
+  addUserMutation,
+  removeUserMutation,
+  updateUserMutation,
+  userResolver,
+  usersResolver,
+} from "./users";
 import { eventsResolver } from "./events";
 import { bioDetailsResolver } from "./bioDetails";
 import { bioDetailsToGroupsResolver } from "./bioDetailsToGroups";
@@ -33,6 +39,7 @@ const dateResolver = new GraphQLScalarType({
 export const resolvers = {
   Date: dateResolver,
   Query: {
+    user: userResolver,
     users: usersResolver,
     groups: groupsResolver,
     events: eventsResolver,
@@ -44,5 +51,7 @@ export const resolvers = {
   },
   Mutation: {
     addUser: addUserMutation,
+    updateUser: updateUserMutation,
+    removeUser: removeUserMutation,
   },
 };

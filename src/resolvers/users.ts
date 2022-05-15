@@ -1,12 +1,19 @@
-import { GraphQLResolveInfo } from "graphql";
+import { GraphQLError, GraphQLResolveInfo } from "graphql";
 import { User } from "../entity/User";
 
+//get all users
 export const usersResolver = async () => {
   return await User.find();
 };
 
-//Mutations
+//get user by id
+export const userResolver = async (_: any, { id }: { id: number }) => {
+  return await User.findOneBy({ id });
+};
 
+/*Mutations*/
+
+//create user
 export const addUserMutation = async (
   _: any,
   {
@@ -29,4 +36,39 @@ export const addUserMutation = async (
 
   const result = await newUserInstance.save();
   return result;
+};
+
+//update user
+export const updateUserMutation = async (
+  _: any,
+  {
+    id,
+    userUpdateInput,
+  }: {
+    id: number;
+    userUpdateInput: {
+      email?: string;
+      firstName?: string;
+      lastName?: string;
+      password?: string;
+    };
+  }
+) => {
+  const userToUpdate = User.findOneBy({ id });
+  if (!userToUpdate) {
+    throw new GraphQLError(`User ${id} does not exist`);
+  }
+
+  return await User.update({ id }, userUpdateInput);
+};
+
+//delete user
+export const removeUserMutation = async (_: any, { id }: { id: number }) => {
+  const userToDelete = User.findOneBy({ id });
+  if (!userToDelete) {
+    throw new GraphQLError(`User ${id} does not exist`);
+  }
+  await User.delete({ id });
+
+  return true;
 };
