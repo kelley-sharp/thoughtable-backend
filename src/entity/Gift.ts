@@ -33,8 +33,8 @@ export class Gift extends BaseEntity {
   deletedDate: Date;
 
   @ManyToOne(() => GiftGallery, (giftGallery) => giftGallery.gifts)
-  giftGallery: GiftGallery;
+  giftGallery: Promise<GiftGallery>;
 
   @ManyToOne(() => User, (user) => user.givenGifts)
-  giver: User;
+  giver: Promise<User>;
 }

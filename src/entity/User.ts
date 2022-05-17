@@ -35,22 +35,22 @@ export class User extends BaseEntity {
   password: string;
 
   @OneToMany(() => Event, (event) => event.owner, { nullable: true })
-  events: Event[];
+  events: Promise<Event[]>;
 
   @OneToMany(() => BioDetail, (bioDetail) => bioDetail.owner, {
     nullable: true,
   })
-  bioDetails: BioDetail[];
+  bioDetails: Promise<BioDetail[]>;
 
   @OneToMany(() => Gift, (gift) => gift.giver, {
     nullable: true,
   })
-  givenGifts: Gift[];
+  givenGifts: Promise<Gift[]>;
 
   @OneToMany(() => GiftGallery, (giftGallery) => giftGallery.owner, {
     nullable: true,
   })
-  giftGalleries: GiftGallery[];
+  giftGalleries: Promise<GiftGallery[]>;
 
   @ManyToMany((type) => Group, { nullable: true })
   @JoinTable({
@@ -64,5 +64,5 @@ export class User extends BaseEntity {
       referencedColumnName: "id",
     },
   })
-  groups: Group[];
+  groups: Promise<Group[]>;
 }

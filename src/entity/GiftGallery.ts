@@ -19,11 +19,11 @@ export class GiftGallery extends BaseEntity {
   createdDate: Date;
 
   @ManyToOne(() => User, (user) => user.giftGalleries)
-  owner: User;
+  owner: Promise<User>;
 
   @ManyToOne(() => Event, (event) => event.giftGalleries)
-  event: Event;
+  event: Promise<Event>;
 
   @OneToMany(() => Gift, (gift) => gift.giftGallery)
-  gifts: Gift[];
+  gifts: Promise<Gift[]>;
 }

@@ -28,13 +28,13 @@ export const seedData = async () => {
   user3.save();
 
   const bioDetail1 = new BioDetail();
-  bioDetail1.owner = user1;
+  bioDetail1.owner = Promise.resolve(user1);
   bioDetail1.type = "background";
   bioDetail1.text = "I was Born in the Woods";
   await bioDetail1.save();
 
   const bioDetail2 = new BioDetail();
-  bioDetail2.owner = user2;
+  bioDetail2.owner = Promise.resolve(user2);
   bioDetail2.type = "hobby";
   bioDetail2.text = "sleeping";
   await bioDetail2.save();
@@ -67,7 +67,7 @@ export const seedData = async () => {
   for (let event of events) {
     const newEvent = new Event();
     newEvent.name = event.name;
-    newEvent.owner = event.owner;
+    newEvent.owner = Promise.resolve(event.owner);
     newEvent.month = event.month;
     newEvent.day = event.day;
     newEvent.repeatsAnnually = event.repeatsAnnually;

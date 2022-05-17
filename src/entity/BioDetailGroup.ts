@@ -17,8 +17,8 @@ export class BioDetailGroup extends BaseEntity {
   public isVisible!: boolean;
 
   @ManyToOne(() => BioDetail, (bioDetail) => bioDetail.bioDetailGroups)
-  public bioDetail!: BioDetail;
+  public bioDetail!: Promise<BioDetail>;
 
   @ManyToOne(() => Group, (group) => group.bioDetailsToGroup)
-  public group!: Group;
+  public group!: Promise<Group>;
 }

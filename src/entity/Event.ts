@@ -32,11 +32,11 @@ export class Event extends BaseEntity {
   repeatsAnnually: boolean;
 
   @ManyToOne(() => User, (user) => user.events)
-  owner: User;
+  owner: Promise<User>;
 
   @OneToMany(() => GiftGallery, (giftGallery) => giftGallery.event)
-  giftGalleries: [GiftGallery];
+  giftGalleries: Promise<[GiftGallery]>;
 
   @OneToMany(() => EventGroup, (eventGroup) => eventGroup.event)
-  public eventGroups!: EventGroup[];
+  public eventGroups!: Promise<EventGroup[]>;
 }

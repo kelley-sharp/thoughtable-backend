@@ -35,7 +35,7 @@ export class Group extends BaseEntity {
       referencedColumnName: "id",
     },
   })
-  users: User[];
+  users: Promise<User[]>;
   //adminId: Users[][0]
 
   @OneToMany(
@@ -43,10 +43,10 @@ export class Group extends BaseEntity {
     (bioDetailGroup) => bioDetailGroup.group,
     { nullable: true }
   )
-  public bioDetailsToGroup: BioDetailGroup[];
+  public bioDetailsToGroup: Promise<BioDetailGroup[]>;
 
   @OneToMany(() => EventGroup, (eventGroups) => eventGroups.group, {
     nullable: true,
   })
-  public eventsToGroup: EventGroup[];
+  public eventsToGroup: Promise<EventGroup[]>;
 }

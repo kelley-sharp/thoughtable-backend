@@ -17,8 +17,8 @@ export class EventGroup extends BaseEntity {
   public isVisible!: boolean;
 
   @ManyToOne(() => Event, (event) => event.eventGroups)
-  public event!: Event;
+  public event!: Promise<Event>;
 
   @ManyToOne(() => Group, (group) => group.eventsToGroup)
-  public group!: Group;
+  public group!: Promise<Group>;
 }
