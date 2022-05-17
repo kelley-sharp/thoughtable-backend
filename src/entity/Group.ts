@@ -9,8 +9,8 @@ import {
   CreateDateColumn,
 } from "typeorm";
 import { User } from "./User";
-import { BioDetailToGroup } from "./BioDetailToGroup";
-import { EventToGroup } from "./EventToGroup";
+import { BioDetailGroup } from "./BioDetailGroup";
+import { EventGroup } from "./EventGroup";
 
 @Entity()
 export class Group extends BaseEntity {
@@ -39,14 +39,14 @@ export class Group extends BaseEntity {
   //adminId: Users[][0]
 
   @OneToMany(
-    () => BioDetailToGroup,
-    (bioDetailToGroup) => bioDetailToGroup.group,
+    () => BioDetailGroup,
+    (bioDetailGroup) => bioDetailGroup.group,
     { nullable: true }
   )
-  public bioDetailsToGroup: BioDetailToGroup[];
+  public bioDetailsToGroup: BioDetailGroup[];
 
-  @OneToMany(() => EventToGroup, (eventToGroups) => eventToGroups.group, {
+  @OneToMany(() => EventGroup, (eventGroups) => eventGroups.group, {
     nullable: true,
   })
-  public eventsToGroup: EventToGroup[];
+  public eventsToGroup: EventGroup[];
 }

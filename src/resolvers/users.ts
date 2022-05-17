@@ -14,7 +14,7 @@ export const userResolver = async (_: any, { id }: { id: number }) => {
 /*Mutations*/
 
 //create user
-export const addUserMutation = async (
+export const createUserMutation = async (
   _: any,
   {
     newUser,
@@ -63,7 +63,7 @@ export const updateUserMutation = async (
 };
 
 //delete user
-export const removeUserMutation = async (_: any, { id }: { id: number }) => {
+export const deleteUserMutation = async (_: any, { id }: { id: number }) => {
   const userToDelete = User.findOneBy({ id });
   if (!userToDelete) {
     throw new GraphQLError(`User ${id} does not exist`);

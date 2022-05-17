@@ -36,8 +36,8 @@ export const typeDefs = gql`
     createdDate: Date!
     name: String!
     users: [User!]!
-    bioDetailsToGroup: [BioDetailToGroup]
-    eventsToGroup: [EventToGroup]
+    bioDetailGroups: [BioDetailGroup]!
+    eventGroups: [EventGroup]!
   }
 
   type Event {
@@ -55,11 +55,11 @@ export const typeDefs = gql`
     type: String!
     text: String!
     owner: User!
-    bioDetailsToGroups: [BioDetailToGroup] #"public"
+    bioDetailGroups: [BioDetailGroup]! #"public"
   }
 
-  type BioDetailToGroup {
-    bioDetailToGroupId: ID! #"public"
+  type BioDetailGroup {
+    bioDetailGroupId: ID! #"public"
     bioDetail: BioDetail! #"public"
     group: Group! #"public"
     isVisible: Boolean! #"public"
@@ -85,8 +85,8 @@ export const typeDefs = gql`
     giver: User!
   }
 
-  type EventToGroup {
-    eventToGroupId: ID! #"Public"
+  type EventGroup {
+    eventGroupId: ID! #"Public"
     isVisible: Boolean! #"Public"
     event: Event! #"Public"
     group: Group! #"Public"
@@ -95,20 +95,26 @@ export const typeDefs = gql`
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each.
   type Query {
+    bioDetail(id: ID!): BioDetail!
+    bioDetails: [BioDetail]!
+    event(id: ID!): Event!
+    events: [Event]!
+    gift(id: ID!): Gift!
+    gifts: [Gift]!
+    giftGallery(id: ID!): GiftGallery!
+    giftGalleries: [GiftGallery]!
+    group(id: ID!): Group!
+    groups: [Group]!
     user(id: ID!): User!
-    users: [User]
-    groups: [Group]
-    events: [Event]
-    bioDetails: [BioDetail]
-    bioDetailsToGroups: [BioDetailToGroup]
-    giftGalleries: [GiftGallery]
-    gifts: [Gift]
-    eventsToGroups: [EventToGroup]
+    users: [User]!
   }
 
   type Mutation {
-    addUser(newUser: UserInput!): User!
+    # users
+    createUser(newUser: UserInput!): User!
     updateUser(id: ID!, userUpdateInput: UserInput!): User!
-    removeUser(id: ID!): Boolean
+    deleteUser(id: ID!): Boolean
+    # groups
+
   }
 `;

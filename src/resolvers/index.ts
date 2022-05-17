@@ -1,18 +1,16 @@
-import { groupsResolver } from "./groups";
+import { groupResolver, groupsResolver } from "./groups";
 import {
-  addUserMutation,
-  removeUserMutation,
+  createUserMutation,
+  deleteUserMutation,
   updateUserMutation,
   userResolver,
   usersResolver,
 } from "./users";
-import { eventsResolver } from "./events";
-import { bioDetailsResolver } from "./bioDetails";
-import { bioDetailsToGroupsResolver } from "./bioDetailsToGroups";
-import { giftGalleriesResolver } from "./giftGalleries";
+import { eventResolver, eventsResolver } from "./events";
+import { bioDetailResolver, bioDetailsResolver } from "./bioDetails";
+import { giftGalleriesResolver, giftGalleryResolver } from "./giftGalleries";
 import { GraphQLScalarType, Kind } from "graphql";
-import { eventsToGroupsResolver } from "./eventsToGroups";
-import { giftsResolver } from "./gifts";
+import { giftResolver, giftsResolver } from "./gifts";
 
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
@@ -42,16 +40,19 @@ export const resolvers = {
     user: userResolver,
     users: usersResolver,
     groups: groupsResolver,
+    group: groupResolver,
     events: eventsResolver,
+    event: eventResolver,
     bioDetails: bioDetailsResolver,
-    bioDetailsToGroups: bioDetailsToGroupsResolver,
+    bioDetail: bioDetailResolver,
     giftGalleries: giftGalleriesResolver,
+    giftGallery: giftGalleryResolver,
     gifts: giftsResolver,
-    eventsToGroups: eventsToGroupsResolver,
+    gift: giftResolver,
   },
   Mutation: {
-    addUser: addUserMutation,
+    createUser: createUserMutation,
     updateUser: updateUserMutation,
-    removeUser: removeUserMutation,
+    deleteUser: deleteUserMutation,
   },
 };

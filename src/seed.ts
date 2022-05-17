@@ -3,7 +3,7 @@ import { Event } from "./entity/Event";
 import { Group } from "./entity/Group";
 import { User } from "./entity/User";
 import { BioDetail } from "./entity/BioDetail";
-import { BioDetailToGroup } from "./entity/BioDetailToGroup";
+import { BioDetailGroup } from "./entity/BioDetailGroup";
 
 export const seedData = async () => {
   const user1 = new User();
@@ -79,9 +79,9 @@ export const seedData = async () => {
     { group: group2, bioDetail: 2, isVisible: true },
   ];
 
-  for (let bioDetailToGroup of bioDetailsToGroups) {
-    const newBioDetailToGroup = new BioDetailToGroup();
-    newBioDetailToGroup.isVisible = bioDetailToGroup.isVisible;
-    await newBioDetailToGroup.save();
+  for (let bioDetailGroup of bioDetailsToGroups) {
+    const newBioDetailGroup = new BioDetailGroup();
+    newBioDetailGroup.isVisible = bioDetailGroup.isVisible;
+    await newBioDetailGroup.save();
   }
 };

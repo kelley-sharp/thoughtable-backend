@@ -9,14 +9,14 @@ import { Event } from "./Event";
 import { Group } from "./Group";
 
 @Entity()
-export class EventToGroup extends BaseEntity {
+export class EventGroup extends BaseEntity {
   @PrimaryGeneratedColumn()
-  public eventToGroupId!: number;
+  public eventGroupId!: number;
 
   @Column()
   public isVisible!: boolean;
 
-  @ManyToOne(() => Event, (event) => event.eventToGroups)
+  @ManyToOne(() => Event, (event) => event.eventGroups)
   public event!: Event;
 
   @ManyToOne(() => Group, (group) => group.eventsToGroup)

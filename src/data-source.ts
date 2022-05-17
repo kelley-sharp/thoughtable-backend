@@ -2,12 +2,12 @@ import { Gift } from "./entity/Gift";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { BioDetail } from "./entity/BioDetail";
-import { BioDetailToGroup } from "./entity/BioDetailToGroup";
+import { BioDetailGroup } from "./entity/BioDetailGroup";
 import { Event } from "./entity/Event";
 import { GiftGallery } from "./entity/GiftGallery";
 import { Group } from "./entity/Group";
 import { User } from "./entity/User";
-import { EventToGroup } from "./entity/EventToGroup";
+import { EventGroup } from "./entity/EventGroup";
 
 function getDataSource() {
   const entities = [
@@ -15,10 +15,10 @@ function getDataSource() {
     Group,
     Event,
     BioDetail,
-    BioDetailToGroup,
+    BioDetailGroup,
     GiftGallery,
     Gift,
-    EventToGroup,
+    EventGroup,
   ];
   if (process.env.NODE_ENV === "production") {
     return new DataSource({

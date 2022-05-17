@@ -10,7 +10,7 @@ import {
 } from "typeorm";
 import { User } from "./User";
 import { Group } from "./Group";
-import { BioDetailToGroup } from "./BioDetailToGroup";
+import { BioDetailGroup } from "./BioDetailGroup";
 
 @Entity()
 export class BioDetail extends BaseEntity {
@@ -27,9 +27,9 @@ export class BioDetail extends BaseEntity {
   owner: User;
 
   @OneToMany(
-    () => BioDetailToGroup,
-    (bioDetailToGroup) => bioDetailToGroup.bioDetail,
+    () => BioDetailGroup,
+    (bioDetailGroup) => bioDetailGroup.bioDetail,
     { nullable: true }
   )
-  public bioDetailToGroups!: BioDetailToGroup[];
+  public bioDetailGroups!: BioDetailGroup[];
 }

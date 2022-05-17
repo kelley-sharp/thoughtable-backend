@@ -9,14 +9,14 @@ import { BioDetail } from "./BioDetail";
 import { Group } from "./Group";
 
 @Entity()
-export class BioDetailToGroup extends BaseEntity {
+export class BioDetailGroup extends BaseEntity {
   @PrimaryGeneratedColumn()
-  public bioDetailToGroupId!: number;
+  public bioDetailGroupId!: number;
 
   @Column()
   public isVisible!: boolean;
 
-  @ManyToOne(() => BioDetail, (bioDetail) => bioDetail.bioDetailToGroups)
+  @ManyToOne(() => BioDetail, (bioDetail) => bioDetail.bioDetailGroups)
   public bioDetail!: BioDetail;
 
   @ManyToOne(() => Group, (group) => group.bioDetailsToGroup)

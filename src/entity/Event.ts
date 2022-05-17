@@ -7,7 +7,7 @@ import {
   OneToMany,
   CreateDateColumn,
 } from "typeorm";
-import { EventToGroup } from "./EventToGroup";
+import { EventGroup } from "./EventGroup";
 import { GiftGallery } from "./GiftGallery";
 import { User } from "./User";
 
@@ -37,6 +37,6 @@ export class Event extends BaseEntity {
   @OneToMany(() => GiftGallery, (giftGallery) => giftGallery.event)
   giftGalleries: [GiftGallery];
 
-  @OneToMany(() => EventToGroup, (eventToGroup) => eventToGroup.event)
-  public eventToGroups!: EventToGroup[];
+  @OneToMany(() => EventGroup, (eventGroup) => eventGroup.event)
+  public eventGroups!: EventGroup[];
 }
