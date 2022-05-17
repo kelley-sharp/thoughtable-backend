@@ -93,10 +93,17 @@ Not implemented yet
 ## Steps to run this project locally:
 
 1. You will need to install node, using v16.15.0
-2. Run `npm i` command to install all the dependencies
-3. Run `npm start` command to start the server
-4. Go to http://localhost:4000/
-5. There you will find the Apollo Sandbox, where GraphQL queries can be made
+1. You also need [PostgreSQL](https://postgresapp.com/)
+1. Run the following SQL to setup the database:
+    ```sql
+    CREATE DATABASE thoughtable;
+    CREATE USER test WITH ENCRYPTED PASSWORD 'test';
+    GRANT ALL PRIVILEGES ON DATABASE thoughtable TO test;
+    ```
+1. Run `npm i` command to install all the dependencies
+1. Run `npm start` command to start the server
+1. Go to http://localhost:4000/
+1. There you will find the Apollo Sandbox, where GraphQL queries can be made
 
 ## Database Model
 

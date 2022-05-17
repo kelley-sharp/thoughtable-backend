@@ -39,7 +39,7 @@ function getDataSource() {
       migrations: [],
       subscribers: [],
       host: "localhost",
-      port: 5432,
+      port: 5433,
       username: "test",
       password: "test",
       synchronize: true,
