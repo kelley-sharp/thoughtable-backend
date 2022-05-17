@@ -17,7 +17,6 @@ export const typeDefs = gql`
     email: String!
     firstName: String!
     lastName: String
-    password: String!
     events: [Event]
     bioDetails: [BioDetail]
     giftGalleries: [GiftGallery]
