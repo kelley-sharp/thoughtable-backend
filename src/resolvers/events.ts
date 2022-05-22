@@ -5,5 +5,5 @@ export const eventsResolver = async () => {
 };
 
 export const eventResolver = async (_: any, { id }: { id: number }) => {
-  return await Event.findOneBy({ id })
+  return await Event.findOneByOrFail({ id })
 }

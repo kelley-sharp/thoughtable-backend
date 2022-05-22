@@ -5,5 +5,5 @@ export const groupsResolver = async () => {
 };
 
 export const groupResolver = async (_: any, { id }: { id: number }) => {
-  return await Group.findOneBy({ id })
+  return await Group.findOneByOrFail({ id })
 }

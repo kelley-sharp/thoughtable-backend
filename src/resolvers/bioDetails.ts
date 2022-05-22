@@ -5,5 +5,5 @@ export const bioDetailsResolver = async () => {
 };
 
 export const bioDetailResolver = async (_: any, { id }: { id: number }) => {
-  return await BioDetail.findOneBy({ id })
+  return await BioDetail.findOneByOrFail({ id })
 }

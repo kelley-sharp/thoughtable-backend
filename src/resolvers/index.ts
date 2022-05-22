@@ -2,6 +2,8 @@ import { groupResolver, groupsResolver } from "./groups";
 import {
   createUserMutation,
   deleteUserMutation,
+  loginMutation,
+  signUpMutation,
   updateUserMutation,
   userResolver,
   usersResolver,
@@ -54,5 +56,7 @@ export const resolvers = {
     createUser: createUserMutation,
     updateUser: updateUserMutation,
     deleteUser: deleteUserMutation,
+    login: loginMutation,
+    signUp: signUpMutation,
   },
 };

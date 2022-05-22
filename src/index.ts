@@ -4,8 +4,11 @@ import { resolvers } from "./resolvers";
 import { typeDefs } from "./schema";
 import { seedData } from "./seed";
 import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
+import dotenv from "dotenv";
 
-require('dotenv').config()
+if (process.env.NODE_ENV === "development") {
+  dotenv.config();
+}
 
 const server = new ApolloServer({
   typeDefs,

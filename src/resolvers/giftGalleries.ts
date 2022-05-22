@@ -5,5 +5,5 @@ export const giftGalleriesResolver = async () => {
 };
 
 export const giftGalleryResolver = async (_: any, { id }: { id: number }) => {
-  return await GiftGallery.findOneBy({ id })
+  return await GiftGallery.findOneByOrFail({ id })
 }

@@ -1,6 +1,4 @@
-import { GraphQLScalarType } from "graphql";
-
-const { ApolloServer, gql } = require("apollo-server");
+const { gql } = require("apollo-server");
 
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
@@ -28,6 +26,15 @@ export const typeDefs = gql`
     lastName: String
     email: String
     password: String
+  }
+
+  input UserLoginInput {
+    email: String!
+    password: String!
+  }
+
+  type UserAuthResponse {
+    token: String!
   }
 
   type Group {
@@ -113,6 +120,8 @@ export const typeDefs = gql`
     createUser(newUser: UserInput!): User!
     updateUser(id: ID!, userUpdateInput: UserInput!): User!
     deleteUser(id: ID!): Boolean
+    signUp(newUser: UserInput!): UserAuthResponse!
+    login(userCredentials: UserLoginInput!): UserAuthResponse!
     # groups
 
   }
