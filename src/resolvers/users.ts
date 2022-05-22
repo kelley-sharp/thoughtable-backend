@@ -1,5 +1,7 @@
 import { GraphQLError, GraphQLResolveInfo } from "graphql";
 import { User } from "../entity/User";
+import bcrypt from "bcrypt";
+import { SALT_ROUNDS } from "../constants";
 
 //get all users
 export const usersResolver = async () => {
@@ -30,8 +32,15 @@ export const createUserMutation = async (
 ) => {
   const newUserInstance = new User();
   for (const field in newUser) {
-    // @ts-expect-error
-    newUserInstance[field] = newUser[field as keyof typeof newUser];
+    if (field === "password" && newUserInstance.password && newUser.password) {
+      newUserInstance.password = await bcrypt.hash(
+        newUser.password,
+        SALT_ROUNDS
+      );
+    } else {
+      // @ts-expect-error
+      newUserInstance[field] = newUser[field as keyof typeof newUser];
+    }
   }
 
   const result = await newUserInstance.save();

@@ -4,27 +4,29 @@ import { Group } from "./entity/Group";
 import { User } from "./entity/User";
 import { BioDetail } from "./entity/BioDetail";
 import { BioDetailGroup } from "./entity/BioDetailGroup";
+import bcrypt from "bcrypt";
+import { SALT_ROUNDS } from "./constants";
 
 export const seedData = async () => {
   const user1 = new User();
   user1.firstName = "Timber";
   user1.lastName = "Saw";
   user1.email = "huey@gmail.com";
-  user1.password = "123";
+  user1.password = await bcrypt.hash("123", SALT_ROUNDS);
   user1.save();
 
   const user2 = new User();
   user2.firstName = "Whiskey";
   user2.lastName = "TheSecond";
   user2.email = "whereisbone@yahoo.com";
-  user2.password = "345";
+  user2.password = await bcrypt.hash("345", SALT_ROUNDS);
   user2.save();
 
   const user3 = new User();
   user3.firstName = "Mr.";
   user3.lastName = "Duck";
   user3.email = "quack@worms.com";
-  user3.password = "567";
+  user3.password = await bcrypt.hash("456", SALT_ROUNDS);
   user3.save();
 
   const bioDetail1 = new BioDetail();

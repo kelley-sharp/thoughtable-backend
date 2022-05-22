@@ -4,6 +4,7 @@
   "description": "Awesome project developed with TypeORM.",
   "type": "commonjs",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/node": "^16.11.10",
     "nodemon": "^2.0.16",
     "prettier": "2.6.2",
@@ -12,6 +13,8 @@
   },
   "dependencies": {
     "apollo-server": "^3.6.7",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.1",
     "graphql": "^16.4.0",
     "pg": "^8.4.0",
     "reflect-metadata": "^0.1.13",

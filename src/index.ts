@@ -5,6 +5,8 @@ import { typeDefs } from "./schema";
 import { seedData } from "./seed";
 import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 
+require('dotenv').config()
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
