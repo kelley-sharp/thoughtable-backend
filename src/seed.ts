@@ -146,6 +146,7 @@ export const seedData = async () => {
   event2.month = 6;
   event2.day = 22;
   event2.repeatsAnnually = true;
+  event2.owner = Promise.resolve(user2);
   event2.save();
 
   const giftGallery2 = new GiftGallery();
