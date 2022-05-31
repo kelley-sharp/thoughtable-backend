@@ -20,7 +20,7 @@ export const seedData = async () => {
 
   const user2 = new User();
   user2.firstName = "Whiskey";
-  user2.lastName = "TheSecond";
+  user2.lastName = "Lane";
   user2.email = "whereisbone@yahoo.com";
   user2.avatarUrl =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rough_Coated_Jack_Russell_Terrier.JPG/1920px-Rough_Coated_Jack_Russell_Terrier.JPG";
