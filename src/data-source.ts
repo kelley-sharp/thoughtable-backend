@@ -10,16 +10,7 @@ import { User } from "./entity/User";
 import { EventGroup } from "./entity/EventGroup";
 
 function getDataSource() {
-  const entities = [
-    User,
-    Group,
-    Event,
-    BioDetail,
-    BioDetailGroup,
-    GiftGallery,
-    Gift,
-    EventGroup,
-  ];
+  const entities = [User, Group, Event, BioDetail, BioDetailGroup, GiftGallery, Gift, EventGroup];
   if (process.env.NODE_ENV === "production") {
     return new DataSource({
       type: "postgres",
@@ -39,7 +30,7 @@ function getDataSource() {
       migrations: [],
       subscribers: [],
       host: "localhost",
-      port: 5433,
+      port: process.env.PORT ? Number(process.env.PORT) : 5432,
       username: "test",
       password: "test",
       synchronize: true,
