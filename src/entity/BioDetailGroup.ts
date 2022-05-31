@@ -1,10 +1,4 @@
-import {
-  Entity,
-  Column,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-  BaseEntity,
-} from "typeorm";
+import { Entity, Column, ManyToOne, PrimaryGeneratedColumn, BaseEntity } from "typeorm";
 import { BioDetail } from "./BioDetail";
 import { Group } from "./Group";
 
@@ -13,7 +7,7 @@ export class BioDetailGroup extends BaseEntity {
   @PrimaryGeneratedColumn()
   public bioDetailGroupId!: number;
 
-  @Column()
+  @Column({ default: true })
   public isVisible!: boolean;
 
   @ManyToOne(() => BioDetail, (bioDetail) => bioDetail.bioDetailGroups)

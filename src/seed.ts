@@ -5,6 +5,8 @@ import { BioDetail } from "./entity/BioDetail";
 import { BioDetailGroup } from "./entity/BioDetailGroup";
 import bcrypt from "bcrypt";
 import { SALT_ROUNDS } from "./constants";
+import { GiftGallery } from "./entity/GiftGallery";
+import { Gift } from "./entity/Gift";
 
 export const seedData = async () => {
   const user1 = new User();
@@ -102,32 +104,53 @@ export const seedData = async () => {
   group2.name = "Acadia";
   group2.save();
 
-  const events = [
-    {
-      owner: user1,
-      name: "Birthday",
-      month: 7,
-      day: 18,
-      repeatsAnnually: true,
-    },
-    {
-      owner: user2,
-      name: "Workversary",
-      month: 6,
-      day: 22,
-      repeatsAnnually: true,
-    },
-  ];
+  const event1 = new Event();
+  event1.name = "Birthday";
+  event1.month = 7;
+  event1.day = 18;
+  event1.repeatsAnnually = true;
+  event1.owner = Promise.resolve(user1);
+  await event1.save();
 
-  for (const event of events) {
-    const newEvent = new Event();
-    newEvent.name = event.name;
-    newEvent.owner = Promise.resolve(event.owner);
-    newEvent.month = event.month;
-    newEvent.day = event.day;
-    newEvent.repeatsAnnually = event.repeatsAnnually;
-    await newEvent.save();
-  }
+  const giftGallery1 = new GiftGallery();
+  giftGallery1.event = Promise.resolve(event1);
+  giftGallery1.save();
+
+  const gift1 = new Gift();
+  gift1.giftGallery = Promise.resolve(giftGallery1);
+  gift1.giver = Promise.resolve(user2);
+  gift1.caption = "This will help with work.";
+  gift1.imageUrl =
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Chainsaw.JPG/220px-Chainsaw.JPG";
+  gift1.save();
+
+  const gift2 = new Gift();
+  gift2.giftGallery = Promise.resolve(giftGallery1);
+  gift2.giver = Promise.resolve(user3);
+  gift2.caption = "Enjoy this yummy treat!";
+  gift2.imageUrl =
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Pinus_radiata_cone.jpg/1920px-Pinus_radiata_cone.jpg";
+  gift2.save();
+
+  const gift3 = new Gift();
+  gift3.giftGallery = Promise.resolve(giftGallery1);
+  gift3.giver = Promise.resolve(user3);
+  gift3.caption = "Go Beavs!";
+  gift3.isAnonymous = true;
+  gift3.imageUrl =
+    "https://images.footballfanatics.com/FFImage/thumb.aspx?i=/productimages/_2563000/altimages/ff_2563282alt1_full.jpg&w=900";
+  gift3.save();
+
+  const event2 = new Event();
+  event2.name = "Workversary";
+  event2.month = 6;
+  event2.day = 22;
+  event2.repeatsAnnually = true;
+  event2.save();
+
+  const giftGallery2 = new GiftGallery();
+  giftGallery2.event = Promise.resolve(event2);
+  giftGallery2.save();
 
   const bioDetailsToGroups = [
     { group: group1, bioDetail: 1, isVisible: true },

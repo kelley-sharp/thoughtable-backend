@@ -14,7 +14,7 @@ export class Gift extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ default: () => "now()" })
   createdDate: Date;
 
   @Column()
@@ -23,13 +23,13 @@ export class Gift extends BaseEntity {
   @Column({ nullable: true })
   caption: string;
 
-  @Column()
+  @Column({ default: false })
   isAnonymous: boolean;
 
-  @Column()
+  @Column({ nullable: true })
   archivedDate: Date;
 
-  @Column()
+  @Column({ nullable: true })
   deletedDate: Date;
 
   @ManyToOne(() => GiftGallery, (giftGallery) => giftGallery.gifts)

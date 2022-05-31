@@ -19,7 +19,7 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ default: () => "now()" })
   createdDate: Date;
 
   @Column()

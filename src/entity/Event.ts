@@ -16,7 +16,7 @@ export class Event extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ default: () => "now()" })
   createdDate: Date;
 
   @Column()
@@ -28,7 +28,7 @@ export class Event extends BaseEntity {
   @Column()
   day: number;
 
-  @Column()
+  @Column({ default: false })
   repeatsAnnually: boolean;
 
   @ManyToOne(() => User, (user) => user.events)

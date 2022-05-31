@@ -17,13 +17,13 @@ export class Group extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ default: () => "now()" })
   createdDate: Date;
 
   @Column()
   name: string;
 
-  @ManyToMany((type) => User)
+  @ManyToMany(() => User)
   @JoinTable({
     name: "groups_users",
     joinColumn: {
@@ -38,11 +38,7 @@ export class Group extends BaseEntity {
   users: Promise<User[]>;
   //adminId: Users[][0]
 
-  @OneToMany(
-    () => BioDetailGroup,
-    (bioDetailGroup) => bioDetailGroup.group,
-    { nullable: true }
-  )
+  @OneToMany(() => BioDetailGroup, (bioDetailGroup) => bioDetailGroup.group, { nullable: true })
   public bioDetailsToGroup: Promise<BioDetailGroup[]>;
 
   @OneToMany(() => EventGroup, (eventGroups) => eventGroups.group, {
