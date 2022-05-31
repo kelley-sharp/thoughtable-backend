@@ -18,18 +18,14 @@ export class BioDetail extends BaseEntity {
   id: number;
 
   @Column()
-  type: string;
+  question: string;
 
   @Column()
-  text: string;
+  response: string;
 
   @ManyToOne(() => User, (owner) => owner.bioDetails)
   owner: Promise<User>;
 
-  @OneToMany(
-    () => BioDetailGroup,
-    (bioDetailGroup) => bioDetailGroup.bioDetail,
-    { nullable: true }
-  )
+  @OneToMany(() => BioDetailGroup, (bioDetailGroup) => bioDetailGroup.bioDetail, { nullable: true })
   public bioDetailGroups!: Promise<BioDetailGroup>[];
 }

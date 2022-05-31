@@ -19,6 +19,7 @@ export const typeDefs = gql`
     bioDetails: [BioDetail]
     giftGalleries: [GiftGallery]
     groups: [Group]
+    avatarUrl: String
   }
 
   input UserInput {
@@ -26,6 +27,7 @@ export const typeDefs = gql`
     lastName: String
     email: String
     password: String
+    avatarUrl: String
   }
 
   input UserLoginInput {
@@ -58,8 +60,8 @@ export const typeDefs = gql`
 
   type BioDetail {
     id: ID!
-    type: String!
-    text: String!
+    question: String!
+    response: String!
     owner: User!
     bioDetailGroups: [BioDetailGroup]! #"public"
   }
@@ -122,6 +124,5 @@ export const typeDefs = gql`
     deleteUser(id: ID!): Boolean
     signUp(newUser: UserInput!): UserAuthResponse!
     login(userCredentials: UserLoginInput!): UserAuthResponse!
-    # groups
   }
 `;

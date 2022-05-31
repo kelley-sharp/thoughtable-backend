@@ -34,6 +34,9 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
+  @Column()
+  avatarUrl: string;
+
   @OneToMany(() => Event, (event) => event.owner, { nullable: true })
   events: Promise<Event[]>;
 
@@ -52,7 +55,7 @@ export class User extends BaseEntity {
   })
   giftGalleries: Promise<GiftGallery[]>;
 
-  @ManyToMany((type) => Group, { nullable: true })
+  @ManyToMany(() => Group, { nullable: true })
   @JoinTable({
     name: "groups_users",
     joinColumn: {
