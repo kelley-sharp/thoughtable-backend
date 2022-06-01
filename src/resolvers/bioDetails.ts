@@ -21,15 +21,17 @@ export const createBioDetailsMutation = async (
   },
   context: any
 ) => {
+  const owner = await User.findOneByOrFail({ id: context.userId });
+
   const results = [];
   for (const bioDetail of bioDetails) {
     const newBioDetail = new BioDetail();
     newBioDetail.question = bioDetail.question;
     newBioDetail.response = bioDetail.response;
-    newBioDetail.owner = User.findOneByOrFail({ id: context.userId });
+    newBioDetail.owner = Promise.resolve(owner);
     const result = await newBioDetail.save();
     results.push(result);
   }
 
-  return results;
+  return Promise.all(results);
 };

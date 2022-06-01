@@ -34,7 +34,7 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
-  @Column()
+  @Column({ nullable: true })
   avatarUrl: string;
 
   @OneToMany(() => Event, (event) => event.owner, { nullable: true, cascade: true })
