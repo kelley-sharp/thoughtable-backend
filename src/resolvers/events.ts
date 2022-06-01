@@ -1,9 +1,17 @@
 import { Event } from "../entity/Event";
 
 export const eventsResolver = async () => {
-  return await Event.find();
+  const events = await Event.find();
+
+  return events.map(async (event) => {
+    const currentGiftGallery = (await event.giftGalleries)[(await event.giftGalleries).length - 1];
+    return { ...event, currentGiftGallery };
+  });
 };
 
 export const eventResolver = async (_: any, { id }: { id: number }) => {
-  return await Event.findOneByOrFail({ id })
-}
+  const event = await Event.findOneByOrFail({ id });
+  const currentGiftGallery = (await event.giftGalleries)[(await event.giftGalleries).length - 1];
+
+  return { ...event, currentGiftGallery };
+};

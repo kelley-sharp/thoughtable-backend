@@ -56,6 +56,7 @@ export const typeDefs = gql`
     day: Int!
     repeatsAnnually: Boolean!
     owner: User!
+    currentGiftGallery: GiftGallery!
   }
 
   type BioDetail {
