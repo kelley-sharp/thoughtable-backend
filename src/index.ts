@@ -34,7 +34,6 @@ const server = new ApolloServer({
       try {
         const decodedToken = jwt.verify(token, JWT_SECRET_KEY);
         userId = (decodedToken as any).userId;
-        console.log({ userId });
       } catch (error) {
         console.log(error);
       }

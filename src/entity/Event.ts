@@ -41,4 +41,6 @@ export class Event extends BaseEntity {
 
   @OneToMany(() => EventGroup, (eventGroup) => eventGroup.event)
   public eventGroups!: Promise<EventGroup[]>;
+
+  public currentGiftGallery: GiftGallery;
 }
