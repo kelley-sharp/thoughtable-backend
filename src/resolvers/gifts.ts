@@ -23,11 +23,14 @@ export const createGiftMutation = async (
   },
   context: any
 ) => {
+  const giftGallery = await GiftGallery.findOneByOrFail({ id: gift.giftGalleryId });
+  const giver = await User.findOneByOrFail({ id: context.userId });
   const newGift = new Gift();
-  newGift.giftGallery = GiftGallery.findOneByOrFail({ id: gift.giftGalleryId });
+  newGift.giftGallery = Promise.resolve(giftGallery);
   newGift.imageUrl = gift.imageUrl;
   newGift.caption = gift.caption;
-  newGift.giver = User.findOneByOrFail({ id: context.userId });
+  newGift.giver = Promise.resolve(giver);
 
-  return await newGift.save();
+  const savedGift = await newGift.save();
+  return savedGift;
 };
