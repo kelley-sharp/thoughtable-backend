@@ -23,83 +23,53 @@ Play with the deployed backend here: https://thoughtable-backend.onrender.com
 <img width="1000" alt="Screen Shot 2022-05-03 at 1 10 13 AM" src="https://user-images.githubusercontent.com/28247931/166407176-c7591eba-1531-447f-8eb4-e351365611b6.png"> 
 (this is the sandbox you should see after clicking the "Query your Server" button)
 
-The migrations are unfinished (Create Update and Delete functionality), but many Read queries have been implemented.
+If you use the interactive documentation on the Apollo Sandbox, you can see all of the working resolvers with their relationships.
 
-Since I have not written resolvers for more than just Reading the main entities, any fields that are in place because of a relationship can not be queried yet.
+<img width="1000" alt="Screen Shot of Queries Doc" src="https://user-images.githubusercontent.com/28247931/171343371-b27bfcf6-bbe1-42ef-9636-dd0ea4bf713e.png">
 
-The working queries are the following.
+Here is an example query from the frontend that you can paste in to test things out:
 
-### Users
-
-```
-{
-  users {
-    id
-    createdDate
-    email
-    firstName
-    lastName
-  }
-}
-```
-
-There is a placeholder for the user's password in the "password" field, but that will be hashed and inaccessible of course in production.
-
-### Groups
-
-```
-{
-  groups {
-    id
-    name
-  }
-}
-```
-
-### BioDetails
-
-```
-{
-  bioDetails {
-    id
-    type
-    text
-  }
-}
-```
-
-### Events
-
-```
-{
-  events {
+```gql
+query findEvent {
+  event(id: 1) {
     id
     name
     month
     day
-    repeatsAnnually
+    owner {
+      id
+      firstName
+      lastName
+      avatarUrl
+    }
+    currentGiftGallery {
+      id
+      gifts {
+        id
+        imageUrl
+        caption
+        giver {
+          id
+          firstName
+          lastName
+          avatarUrl
+        }
+      }
+    }
   }
 }
 ```
-
-### GiftGalleries
-
-Not implemented yet
-
-### Gifts
-
-Not implemented yet
 
 ## Steps to run this project locally:
 
 1. You will need to install node, using v16.15.0
 1. You also need [PostgreSQL](https://postgresapp.com/)
 1. Run the following SQL to setup the database:
-    ```sql
-    CREATE DATABASE thoughtable;
-    CREATE USER test WITH ENCRYPTED PASSWORD 'test';
-    GRANT ALL PRIVILEGES ON DATABASE thoughtable TO test;
-    ```
+   ```sql
+   CREATE DATABASE thoughtable;
+   CREATE USER test WITH ENCRYPTED PASSWORD 'test';
+   GRANT ALL PRIVILEGES ON DATABASE thoughtable TO test;
+   ```
 1. Run `npm i` command to install all the dependencies
 1. Run `npm start` command to start the server
 1. Go to http://localhost:4000/
