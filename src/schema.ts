@@ -63,7 +63,12 @@ export const typeDefs = gql`
     question: String!
     response: String!
     owner: User!
-    bioDetailGroups: [BioDetailGroup]! #"public"
+    bioDetailGroups: [BioDetailGroup] #"public"
+  }
+
+  input BioDetailInput {
+    question: String
+    response: String
   }
 
   type BioDetailGroup {
@@ -87,10 +92,16 @@ export const typeDefs = gql`
     imageUrl: String!
     caption: String
     isAnonymous: Boolean!
-    archivedDate: Date!
-    deletedDate: Date!
+    archivedDate: Date
+    deletedDate: Date
     giftGallery: GiftGallery!
     giver: User!
+  }
+
+  input GiftInput {
+    imageUrl: String
+    caption: String
+    giftGalleryId: ID
   }
 
   type EventGroup {
@@ -125,5 +136,11 @@ export const typeDefs = gql`
     deleteUser(id: ID!): Boolean
     signUp(newUser: UserInput!): UserAuthResponse!
     login(userCredentials: UserLoginInput!): UserAuthResponse!
+
+    # biodetails
+    createBioDetails(bioDetails: [BioDetailInput]!): [BioDetail]!
+
+    # gifts
+    createGift(gift: GiftInput!): Gift!
   }
 `;

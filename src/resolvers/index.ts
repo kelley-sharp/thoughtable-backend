@@ -10,10 +10,10 @@ import {
   usersResolver,
 } from "./users";
 import { eventResolver, eventsResolver } from "./events";
-import { bioDetailResolver, bioDetailsResolver } from "./bioDetails";
+import { bioDetailResolver, bioDetailsResolver, createBioDetailsMutation } from "./bioDetails";
 import { giftGalleriesResolver, giftGalleryResolver } from "./giftGalleries";
 import { GraphQLScalarType, Kind } from "graphql";
-import { giftResolver, giftsResolver } from "./gifts";
+import { createGiftMutation, giftResolver, giftsResolver } from "./gifts";
 
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
@@ -60,5 +60,7 @@ export const resolvers = {
     deleteUser: deleteUserMutation,
     login: loginMutation,
     signUp: signUpMutation,
+    createGift: createGiftMutation,
+    createBioDetails: createBioDetailsMutation,
   },
 };
