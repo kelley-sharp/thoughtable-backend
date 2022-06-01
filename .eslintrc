@@ -38,7 +38,7 @@
     "curly": "warn",
     "indent": "off",
     "max-len": "off",
-    "no-console": "warn",
+    "no-console": "off",
     "no-empty-character-class": "off",
     "no-global-assign": "off",
     "no-unexpected-multiline": "off",

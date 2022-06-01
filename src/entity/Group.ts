@@ -38,11 +38,9 @@ export class Group extends BaseEntity {
   users: Promise<User[]>;
   //adminId: Users[][0]
 
-  @OneToMany(() => BioDetailGroup, (bioDetailGroup) => bioDetailGroup.group, { nullable: true })
+  @OneToMany(() => BioDetailGroup, (bioDetailGroup) => bioDetailGroup.group)
   public bioDetailsToGroup: Promise<BioDetailGroup[]>;
 
-  @OneToMany(() => EventGroup, (eventGroups) => eventGroups.group, {
-    nullable: true,
-  })
+  @OneToMany(() => EventGroup, (eventGroups) => eventGroups.group)
   public eventsToGroup: Promise<EventGroup[]>;
 }

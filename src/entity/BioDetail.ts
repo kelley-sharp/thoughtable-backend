@@ -16,6 +16,9 @@ export class BioDetail extends BaseEntity {
   @ManyToOne(() => User, (owner) => owner.bioDetails)
   owner: Promise<User>;
 
-  @OneToMany(() => BioDetailGroup, (bioDetailGroup) => bioDetailGroup.bioDetail, { nullable: true })
+  @OneToMany(() => BioDetailGroup, (bioDetailGroup) => bioDetailGroup.bioDetail, {
+    nullable: true,
+    cascade: true,
+  })
   public bioDetailGroups!: Promise<BioDetailGroup>[];
 }

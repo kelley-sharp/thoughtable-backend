@@ -113,6 +113,7 @@ export const typeDefs = gql`
     giftGalleries: [GiftGallery]!
     group(id: ID!): Group!
     groups: [Group]!
+    currentUser: User
     user(id: ID!): User!
     users: [User]!
   }

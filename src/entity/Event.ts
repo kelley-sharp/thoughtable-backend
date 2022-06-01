@@ -16,7 +16,7 @@ export class Event extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @CreateDateColumn({ default: () => "now()" })
+  @CreateDateColumn({ default: new Date() })
   createdDate: Date;
 
   @Column()
@@ -34,7 +34,9 @@ export class Event extends BaseEntity {
   @ManyToOne(() => User, (user) => user.events)
   owner: Promise<User>;
 
-  @OneToMany(() => GiftGallery, (giftGallery) => giftGallery.event)
+  @OneToMany(() => GiftGallery, (giftGallery) => giftGallery.event, {
+    cascade: true,
+  })
   giftGalleries: Promise<[GiftGallery]>;
 
   @OneToMany(() => EventGroup, (eventGroup) => eventGroup.event)

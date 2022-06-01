@@ -1,6 +1,7 @@
 import { groupResolver, groupsResolver } from "./groups";
 import {
   createUserMutation,
+  currentUserResolver,
   deleteUserMutation,
   loginMutation,
   signUpMutation,
@@ -39,6 +40,7 @@ const dateResolver = new GraphQLScalarType({
 export const resolvers = {
   Date: dateResolver,
   Query: {
+    currentUser: currentUserResolver,
     user: userResolver,
     users: usersResolver,
     groups: groupsResolver,

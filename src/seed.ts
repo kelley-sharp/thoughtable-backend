@@ -16,7 +16,7 @@ export const seedData = async () => {
   user1.password = await bcrypt.hash("123", SALT_ROUNDS);
   user1.avatarUrl =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/American_Beaver.jpg/440px-American_Beaver.jpg";
-  user1.save();
+  await user1.save();
 
   const user2 = new User();
   user2.firstName = "Whiskey";
@@ -25,7 +25,7 @@ export const seedData = async () => {
   user2.avatarUrl =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rough_Coated_Jack_Russell_Terrier.JPG/1920px-Rough_Coated_Jack_Russell_Terrier.JPG";
   user2.password = await bcrypt.hash("345", SALT_ROUNDS);
-  user2.save();
+  await user2.save();
 
   const user3 = new User();
   user3.firstName = "Mr.";
@@ -34,7 +34,7 @@ export const seedData = async () => {
   user3.avatarUrl =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Bucephala-albeola-010.jpg/440px-Bucephala-albeola-010.jpg";
   user3.password = await bcrypt.hash("456", SALT_ROUNDS);
-  user3.save();
+  await user3.save();
 
   const bioDetailQuestions = [
     "What is your favorite place?",
@@ -98,11 +98,11 @@ export const seedData = async () => {
 
   const group1 = new Group();
   group1.name = "Cromwell House";
-  group1.save();
+  await group1.save();
 
   const group2 = new Group();
   group2.name = "Acadia";
-  group2.save();
+  await group2.save();
 
   const event1 = new Event();
   event1.name = "Birthday";
@@ -114,7 +114,7 @@ export const seedData = async () => {
 
   const giftGallery1 = new GiftGallery();
   giftGallery1.event = Promise.resolve(event1);
-  giftGallery1.save();
+  await giftGallery1.save();
 
   const gift1 = new Gift();
   gift1.giftGallery = Promise.resolve(giftGallery1);
@@ -122,7 +122,7 @@ export const seedData = async () => {
   gift1.caption = "This will help with work.";
   gift1.imageUrl =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Chainsaw.JPG/220px-Chainsaw.JPG";
-  gift1.save();
+  await gift1.save();
 
   const gift2 = new Gift();
   gift2.giftGallery = Promise.resolve(giftGallery1);
@@ -130,7 +130,7 @@ export const seedData = async () => {
   gift2.caption = "Enjoy this yummy treat!";
   gift2.imageUrl =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Pinus_radiata_cone.jpg/1920px-Pinus_radiata_cone.jpg";
-  gift2.save();
+  await gift2.save();
 
   const gift3 = new Gift();
   gift3.giftGallery = Promise.resolve(giftGallery1);
@@ -139,7 +139,7 @@ export const seedData = async () => {
   gift3.isAnonymous = true;
   gift3.imageUrl =
     "https://images.footballfanatics.com/FFImage/thumb.aspx?i=/productimages/_2563000/altimages/ff_2563282alt1_full.jpg&w=900";
-  gift3.save();
+  await gift3.save();
 
   const event2 = new Event();
   event2.name = "Workversary";
@@ -147,11 +147,11 @@ export const seedData = async () => {
   event2.day = 22;
   event2.repeatsAnnually = true;
   event2.owner = Promise.resolve(user2);
-  event2.save();
+  await event2.save();
 
   const giftGallery2 = new GiftGallery();
   giftGallery2.event = Promise.resolve(event2);
-  giftGallery2.save();
+  await giftGallery2.save();
 
   const bioDetailsToGroups = [
     { group: group1, bioDetail: 1, isVisible: true },

@@ -37,25 +37,28 @@ export class User extends BaseEntity {
   @Column()
   avatarUrl: string;
 
-  @OneToMany(() => Event, (event) => event.owner, { nullable: true })
+  @OneToMany(() => Event, (event) => event.owner, { nullable: true, cascade: true })
   events: Promise<Event[]>;
 
   @OneToMany(() => BioDetail, (bioDetail) => bioDetail.owner, {
     nullable: true,
+    cascade: true,
   })
   bioDetails: Promise<BioDetail[]>;
 
   @OneToMany(() => Gift, (gift) => gift.giver, {
     nullable: true,
+    cascade: true,
   })
   givenGifts: Promise<Gift[]>;
 
   @OneToMany(() => GiftGallery, (giftGallery) => giftGallery.owner, {
     nullable: true,
+    cascade: true,
   })
   giftGalleries: Promise<GiftGallery[]>;
 
-  @ManyToMany(() => Group, { nullable: true })
+  @ManyToMany(() => Group, { nullable: true, cascade: true })
   @JoinTable({
     name: "groups_users",
     joinColumn: {

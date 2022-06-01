@@ -1,4 +1,4 @@
-import { GraphQLError, GraphQLResolveInfo } from "graphql";
+import { GraphQLError } from "graphql";
 import { User } from "../entity/User";
 import bcrypt from "bcrypt";
 import { JWT_SECRET_KEY, SALT_ROUNDS } from "../constants";
@@ -33,10 +33,7 @@ export const createUserMutation = async (
   const newUserInstance = new User();
   for (const field in newUser) {
     if (field === "password") {
-      newUserInstance.password = await bcrypt.hash(
-        newUser.password,
-        SALT_ROUNDS
-      );
+      newUserInstance.password = await bcrypt.hash(newUser.password, SALT_ROUNDS);
     } else {
       // @ts-expect-error
       newUserInstance[field] = newUser[field as keyof typeof newUser];
@@ -99,11 +96,7 @@ export const signUpMutation = async (
 
   for (const field in newUser) {
     if (field === "password") {
-      newUserInstance.password = await bcrypt.hash(
-        newUser.password,
-        SALT_ROUNDS
-      );
-      console.log("newUserInstancePassword", newUserInstance.password);
+      newUserInstance.password = await bcrypt.hash(newUser.password, SALT_ROUNDS);
     } else {
       // @ts-expect-error
       newUserInstance[field] = newUser[field as keyof typeof newUser];
@@ -125,8 +118,6 @@ export const loginMutation = async (
 ) => {
   const { email, password } = userCredentials;
   const user = await User.findOneByOrFail({ email });
-  console.log("login password", password);
-  console.log("queried login user password", user.password);
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
     throw new Error("Invalid password");
@@ -137,4 +128,12 @@ export const loginMutation = async (
   return {
     token,
   };
+};
+
+export const currentUserResolver = async (parent: any, args: any, context: any) => {
+  if (context.userId) {
+    return await User.findOneBy({ id: context.userId });
+  }
+
+  return null;
 };

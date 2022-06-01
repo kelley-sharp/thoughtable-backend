@@ -24,6 +24,8 @@ export class GiftGallery extends BaseEntity {
   @ManyToOne(() => Event, (event) => event.giftGalleries)
   event: Promise<Event>;
 
-  @OneToMany(() => Gift, (gift) => gift.giftGallery)
+  @OneToMany(() => Gift, (gift) => gift.giftGallery, {
+    cascade: true,
+  })
   gifts: Promise<Gift[]>;
 }
