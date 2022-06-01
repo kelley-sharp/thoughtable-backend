@@ -22,7 +22,7 @@ export class User extends BaseEntity {
   @CreateDateColumn({ default: () => "now()" })
   createdDate: Date;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
